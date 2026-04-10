@@ -15,22 +15,22 @@ export const MENU_DATA: MenuItem[] = [
   {
     title: 'Gold',
     type: 'dropdown',
-    items: ['Rings', 'Chains', 'Necklaces', 'Bangles']
+    items: ['Rings', 'Chains', 'Necklaces', 'Bangles', 'Earrings', 'Pendants', 'Bridal Sets', 'Customized Jewelry']
   },
   {
     title: 'Silver',
     type: 'dropdown',
-    items: ['Anklets', 'Bangles', 'Idols', 'Rings']
+    items: ['Rings', 'Chains', 'Anklets', 'Bracelets', 'Earrings', 'Silver Articles']
   },
   {
     title: 'Platinum',
     type: 'dropdown',
-    items: ['Bands', 'Chains']
+    items: ['Rings', 'Couple Rings', 'Chains', 'Bracelets', 'Pendants']
   },
   {
     title: 'Diamond',
     type: 'dropdown',
-    items: ['Rings', 'Pendants', 'Earrings']
+    items: ['Rings', 'Necklaces', 'Earrings', 'Bracelets', 'Pendants', 'Bridal Sets']
   },
   {
     title: 'About',

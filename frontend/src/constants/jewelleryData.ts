@@ -7,59 +7,68 @@ export interface ShowcaseItem {
   description: string;
 }
 
+const ALL_IMAGES = [
+  '/images/showcase/gold_1.webp', '/images/showcase/gold_2.webp', '/images/showcase/gold_3.webp',
+  '/images/showcase/gold_4.webp', '/images/showcase/gold_5.webp', '/images/showcase/gold_ring_1.webp',
+  '/images/showcase/gold_chain_1.webp', '/images/showcase/gold_bangle_1.webp', '/images/showcase/gold_ext_1.webp',
+  '/images/showcase/silver_1.webp', '/images/showcase/silver_2.webp', '/images/showcase/silver_3.webp',
+  '/images/showcase/silver_anklet_1.webp', '/images/showcase/silver_ring_1.webp', '/images/showcase/silver_ext_1.webp',
+  '/images/showcase/diamond_ring_1.webp', '/images/showcase/diamond_pendant_1.webp', '/images/showcase/diamond_ext_1.webp',
+  '/images/showcase/platinum_band_1.webp', '/images/showcase/platinum_chain_1.webp', '/images/showcase/platinum_2.webp'
+];
+
+// Helper to generate 9 unique items per subcategory
+const generateSubcategoryItems = (cat: string, sub: string, startIndex: number): ShowcaseItem[] => {
+  return Array.from({ length: 9 }).map((_, i) => {
+    // Pick from ALL_IMAGES using a offset to ensure variety across subcategories
+    const imgIndex = (startIndex + i) % ALL_IMAGES.length;
+    return {
+      id: `${cat.toLowerCase()}-${sub.toLowerCase()}-${i + 1}`,
+      name: `${cat} ${sub.slice(0, -1)} ${i + 1}`,
+      category: cat,
+      subcategory: sub,
+      image: ALL_IMAGES[imgIndex],
+      description: `A unique and masterfully crafted ${sub.toLowerCase()} piece from our exclusive ${cat} collection.`
+    };
+  });
+};
+
 export const JEWELLERY_DATA: ShowcaseItem[] = [
-  // GOLD RINGS (9 Items)
-  ...Array.from({ length: 9 }).map((_, i) => ({
-    id: `gold-ring-${i + 1}`,
-    name: `Exquisite Gold Ring ${i + 1}`,
-    category: 'Gold',
-    subcategory: 'Rings',
-    image: `/images/showcase/gold_ring_1.webp`,
-    description: `A masterfully crafted 22K gold ring featuring intricate traditional patterns.`
-  })),
-  
-  // GOLD CHAINS (9 Items)
-  ...Array.from({ length: 9 }).map((_, i) => ({
-    id: `gold-chain-${i + 1}`,
-    name: `Luxury Gold Chain ${i + 1}`,
-    category: 'Gold',
-    subcategory: 'Chains',
-    image: `/images/showcase/gold_chain_1.webp`,
-    description: `Solid 22K gold chain with a premium rope twist design.`
-  })),
+  // GOLD
+  ...generateSubcategoryItems('Gold', 'Rings', 0),
+  ...generateSubcategoryItems('Gold', 'Chains', 9),
+  ...generateSubcategoryItems('Gold', 'Necklaces', 18),
+  ...generateSubcategoryItems('Gold', 'Bangles', 2),
+  ...generateSubcategoryItems('Gold', 'Earrings', 11),
+  ...generateSubcategoryItems('Gold', 'Pendants', 20),
+  ...generateSubcategoryItems('Gold', 'Bridal Sets', 5),
 
-  // SILVER ANKLETS (9 Items)
-  ...Array.from({ length: 9 }).map((_, i) => ({
-    id: `silver-anklet-${i + 1}`,
-    name: `Bridal Silver Anklet ${i + 1}`,
-    category: 'Silver',
-    subcategory: 'Anklets',
-    image: `/images/showcase/silver_anklet_1.webp`,
-    description: `Handcrafted sterling silver anklet with delicate jingling bells.`
-  })),
+  // SILVER
+  ...generateSubcategoryItems('Silver', 'Rings', 14),
+  ...generateSubcategoryItems('Silver', 'Chains', 3),
+  ...generateSubcategoryItems('Silver', 'Anklets', 12),
+  ...generateSubcategoryItems('Silver', 'Bracelets', 1),
+  ...generateSubcategoryItems('Silver', 'Earrings', 10),
+  ...generateSubcategoryItems('Silver', 'Silver Articles', 19),
 
-  // DIAMOND RINGS (9 Items)
-  ...Array.from({ length: 9 }).map((_, i) => ({
-    id: `diamond-ring-${i + 1}`,
-    name: `Regal Diamond Ring ${i + 1}`,
-    category: 'Diamond',
-    subcategory: 'Rings',
-    image: `/images/showcase/diamond_ring_1.webp`,
-    description: `A stunning solitaire diamond set in a white gold band.`
-  })),
+  // PLATINUM
+  ...generateSubcategoryItems('Platinum', 'Rings', 6),
+  ...generateSubcategoryItems('Platinum', 'Couple Rings', 15),
+  ...generateSubcategoryItems('Platinum', 'Chains', 4),
+  ...generateSubcategoryItems('Platinum', 'Bracelets', 13),
+  ...generateSubcategoryItems('Platinum', 'Pendants', 7),
 
-  // PLATINUM CHAINS (9 Items)
-  ...Array.from({ length: 9 }).map((_, i) => ({
-    id: `platinum-chain-${i + 1}`,
-    name: `Modern Platinum Chain ${i + 1}`,
-    category: 'Platinum',
-    subcategory: 'Chains',
-    image: `/images/showcase/platinum_chain_1.webp`,
-    description: `Durable and sleek platinum chain for a minimalist look.`
-  })),
-  
-  // ADDITIONAL ITEMS FOR VARIETY
-  { id: 'dp1', name: 'Heart Diamond Pendant', category: 'Diamond', subcategory: 'Pendants', image: '/images/showcase/diamond_pendant_1.webp', description: 'Graceful heart-shaped diamond pendant.' },
-  { id: 'gb1', name: 'Temple Gold Bangles', category: 'Gold', subcategory: 'Bangles', image: '/images/showcase/gold_bangle_1.webp', description: 'Traditional gold bangles with matte finish.' },
-  { id: 'sr1', name: 'Sapphire Silver Ring', category: 'Silver', subcategory: 'Rings', image: '/images/showcase/silver_ring_1.webp', description: 'Sterling silver ring with a deep blue sapphire.' },
+  // DIAMOND
+  ...generateSubcategoryItems('Diamond', 'Rings', 17),
+  ...generateSubcategoryItems('Diamond', 'Necklaces', 8),
+  ...generateSubcategoryItems('Diamond', 'Earrings', 0),
+  ...generateSubcategoryItems('Diamond', 'Bracelets', 9),
+  ...generateSubcategoryItems('Diamond', 'Pendants', 18),
+  ...generateSubcategoryItems('Diamond', 'Bridal Sets', 2),
+
+  // CUSTOMIZED & LIGHTWEIGHT SPECIALS
+  { id: 'custom-1', name: 'Name Bracelet', category: 'Gold', subcategory: 'Customized Jewelry', image: '/images/showcase/custom_name_bracelet.webp', description: 'Personalized gold name bracelet.' },
+  { id: 'custom-2', name: 'Photo Pendant', category: 'Gold', subcategory: 'Customized Jewelry', image: '/images/showcase/custom_photo_pendant.webp', description: 'Memory photo engraved locket.' },
+  { id: 'light-1', name: 'Heart Gold Haram', category: 'Gold', subcategory: 'Necklaces', image: '/images/showcase/lightweight_heart_haram.webp', description: 'Lightweight 22K gold heart haram.' },
+  { id: 'light-2', name: 'Silver Baby Thandai', category: 'Silver', subcategory: 'Anklets', image: '/images/showcase/lightweight_baby_thandai.webp', description: 'Traditional baby silver anklets.' },
 ];

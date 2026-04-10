@@ -21,7 +21,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gold-light/20 font-serif">
       <nav className="max-w-[1440px] mx-auto px-4 lg:px-8 py-4 lg:py-6 flex justify-between items-center relative">
         {/* Brand Logo - Left */}
-        <Link to="/" className="flex flex-col items-center group flex-shrink-0">
+        <Link to="/" className="flex flex-col items-center group flex-shrink-0 font-calisto">
           <span className="text-2xl lg:text-4xl font-bold text-gold-dark tracking-tighter leading-none group-hover:text-gold transition-colors">
             SANTHI
           </span>
@@ -70,7 +70,7 @@ const Navbar = () => {
                           {item.items.map((sub) => (
                             <li key={sub}>
                               <Link 
-                                to={`/category/${item.title}/${sub}`}
+                                to={sub === 'Customized Jewelry' ? '/gold/customized' : `/category/${item.title}/${sub}`}
                                 className="block px-4 py-2 text-[13px] text-gray-600 hover:bg-gold/5 hover:text-gold transition-all duration-200 font-sans font-medium"
                               >
                                 {sub}
@@ -105,7 +105,7 @@ const Navbar = () => {
               className="fixed inset-0 bg-white z-[60] flex flex-col p-8 lg:hidden"
             >
               <div className="flex justify-between items-center mb-12">
-                <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex flex-col items-center">
+                <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex flex-col items-center font-calisto">
                   <span className="text-3xl font-bold text-gold-dark tracking-tighter leading-none">SANTHI</span>
                   <span className="text-[10px] tracking-[0.3em] font-medium text-luxury-accent">JEWELLERS</span>
                 </Link>
@@ -127,7 +127,7 @@ const Navbar = () => {
                         {item.items.map(sub => (
                           <Link 
                             key={sub} 
-                            to={`/category/${item.title}/${sub}`} 
+                            to={sub === 'Customized Jewelry' ? '/gold/customized' : `/category/${item.title}/${sub}`} 
                             onClick={() => setMobileMenuOpen(false)}
                             className="text-gray-600 font-medium"
                           >

@@ -28,7 +28,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-gold tracking-[0.4em] uppercase text-sm font-semibold mb-6 block">Sanity Jewellers • Since 1985</span>
+              <span className="text-gold tracking-[0.4em] uppercase text-sm font-semibold mb-6 block font-calisto">Santhi Jewellers • Since 1985</span>
               <h1 className="text-5xl lg:text-7xl font-serif font-bold mb-8 leading-tight">
                 Crafting Legacies <br /> In Pure Brilliance
               </h1>

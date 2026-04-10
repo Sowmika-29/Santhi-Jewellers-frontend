@@ -22,6 +22,8 @@ export default {
       fontFamily: {
         serif: ['"Playfair Display"', 'serif'],
         sans: ['Montserrat', 'Inter', 'sans-serif'],
+        calisto: ['"Calisto MT"', 'serif'],
+        rockwell: ['Rockwell', 'serif'],
       },
     },
   },

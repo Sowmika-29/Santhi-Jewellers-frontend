@@ -7,8 +7,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Brand Info */}
         <div className="space-y-6">
-          <div className="flex flex-col">
-            <span className="text-2xl font-serif font-bold text-gold-dark tracking-tighter leading-none">
+          <div className="flex flex-col font-calisto">
+            <span className="text-2xl font-bold text-gold-dark tracking-tighter leading-none">
               SANTHI
             </span>
             <span className="text-[10px] tracking-[0.3em] font-medium text-luxury-accent -mt-0.5">
@@ -52,11 +52,11 @@ const Footer = () => {
           <ul className="space-y-4 text-sm text-gray-600">
             <li className="flex items-start space-x-3">
               <MapPin size={18} className="text-gold shrink-0" />
-              <span>123 Jewellery Lane, High Street, Hyderabad, India</span>
+              <span className="font-calisto font-bold">Karaikudi</span>
             </li>
             <li className="flex items-center space-x-3">
               <Phone size={18} className="text-gold shrink-0" />
-              <span>+91 98765 43210</span>
+              <span className="font-rockwell">94432 11809</span>
             </li>
             <li className="flex items-center space-x-3">
               <Mail size={18} className="text-gold shrink-0" />

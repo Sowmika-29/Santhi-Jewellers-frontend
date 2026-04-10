@@ -6,11 +6,19 @@ import { JEWELLERY_DATA } from '../constants/jewelleryData';
 const SubCategoryPage = () => {
   const { type, sub } = useParams();
 
-  // Filter logic: match category (type) and subcategory (sub)
-  const items = JEWELLERY_DATA.filter(
-    item => item.category.toLowerCase() === type?.toLowerCase() && 
-            item.subcategory.toLowerCase() === sub?.toLowerCase()
-  );
+  // Filter logic: 
+  // If 'sub' is present, match both category and subcategory.
+  // If 'sub' is missing, match only category.
+  const items = JEWELLERY_DATA.filter(item => {
+    const categoryMatch = item.category.toLowerCase() === type?.toLowerCase();
+    if (sub) {
+      return categoryMatch && item.subcategory.toLowerCase() === sub?.toLowerCase();
+    }
+    return categoryMatch;
+  });
+
+  // Limit to 9 items as requested for a clean grid
+  const displayedItems = items.slice(0, 9);
 
   return (
     <div className="min-h-screen bg-[#fafaf9] pt-16 pb-24 px-4 lg:px-12">
@@ -22,18 +30,21 @@ const SubCategoryPage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl lg:text-5xl font-serif text-luxury-text font-bold uppercase tracking-widest"
           >
-            {type} {sub}
+            {type} {sub || 'COLLECTIONS'}
           </motion.h1>
           <div className="h-0.5 w-24 bg-gold mx-auto"></div>
           <p className="text-gray-500 font-sans tracking-wide">
-            A curated selection of the finest {type?.toLowerCase()} {sub?.toLowerCase()} masterpieces.
+            {sub 
+              ? `A curated selection of the finest ${type?.toLowerCase()} ${sub?.toLowerCase()} masterpieces.`
+              : `Explore our prestigious collection of ${type?.toLowerCase()} jewellery.`
+            }
           </p>
         </div>
 
         {/* Gallery Grid - 3 Columns Desktop */}
-        {items.length > 0 ? (
+        {displayedItems.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {items.map((item, index) => (
+            {displayedItems.map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, scale: 0.98 }}
@@ -64,7 +75,7 @@ const SubCategoryPage = () => {
           </div>
         ) : (
           <div className="text-center py-32 bg-white shadow-sm border border-gray-50 rounded-lg">
-            <h2 className="text-3xl text-gray-300 font-serif mb-6 italic">No items available in this subcategory yet.</h2>
+            <h2 className="text-3xl text-gray-300 font-serif mb-6 italic">No items available in this category yet.</h2>
             <Link to="/" className="text-gold font-bold tracking-[0.3em] uppercase hover:underline">Return to Home</Link>
           </div>
         )}
