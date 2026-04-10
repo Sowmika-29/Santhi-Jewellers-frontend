@@ -1,35 +1,43 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { GoldRateProvider } from './context/GoldRateContext';
+import { WishlistProvider } from './context/WishlistContext';
 import Navbar from './components/Navbar';
+import TopBar from './components/TopBar';
 import GoldRateTicker from './components/GoldRateTicker';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import SubCategoryPage from './pages/SubCategoryPage';
 import GoldCustomized from './pages/GoldCustomized';
+import About from './pages/About';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   console.log('Jewellery Showcase Rendering...');
   return (
     <GoldRateProvider>
-      <Router>
-        <div className="flex flex-col min-h-screen bg-white">
-          <GoldRateTicker />
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/gold/customized" element={<GoldCustomized />} />
-              <Route path="/category/:type" element={<SubCategoryPage />} />
-              <Route path="/category/:type/:sub" element={<SubCategoryPage />} />
-              <Route path="/about" element={<div className="p-20 text-center text-2xl font-serif">About Santhi Jewellers coming soon...</div>} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
+      <WishlistProvider>
+        <Router>
+          <ScrollToTop />
+          <div className="flex flex-col min-h-screen bg-white">
+            <TopBar />
+            <GoldRateTicker />
+            <Navbar />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/gold/customized" element={<GoldCustomized />} />
+                <Route path="/category/:type" element={<SubCategoryPage />} />
+                <Route path="/category/:type/:sub" element={<SubCategoryPage />} />
+                <Route path="/about" element={<About />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </WishlistProvider>
     </GoldRateProvider>
   );
 }
+
 
 export default App;

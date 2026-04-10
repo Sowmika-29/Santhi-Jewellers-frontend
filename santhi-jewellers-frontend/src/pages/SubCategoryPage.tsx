@@ -47,13 +47,14 @@ const SubCategoryPage = () => {
             {displayedItems.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -15, scale: 1.02 }}
                 viewport={{ once: true }}
-                transition={{ delay: (index % 3) * 0.1 }}
-                className="group bg-white p-6 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 rounded-sm"
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="group bg-white p-6 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 rounded-[24px]"
               >
-                <div className="aspect-[4/5] overflow-hidden mb-8 relative">
+                <div className="aspect-[4/5] overflow-hidden mb-8 relative rounded-[16px]">
                   <img 
                     src={item.image} 
                     alt={item.name}
@@ -62,13 +63,12 @@ const SubCategoryPage = () => {
                       (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x500?text=Jewellery+Showcase';
                     }}
                   />
-                  <div className="absolute inset-0 bg-gold-dark/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-[#5B0E23]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 <div className="text-center space-y-3">
-                  <span className="text-[10px] text-gold uppercase tracking-[0.3em] font-black">{item.subcategory}</span>
-                  <h3 className="text-[18px] font-serif font-bold text-luxury-text uppercase tracking-wider">{item.name}</h3>
-                  <div className="h-[1px] w-8 bg-gold/30 mx-auto group-hover:w-16 transition-all duration-500"></div>
-                  <p className="text-[13px] text-gray-400 font-sans font-light px-4">{item.description}</p>
+                  <span className="text-[10px] text-[#D4AF37] uppercase tracking-[0.3em] font-black">{item.subcategory}</span>
+                  <h3 className="text-[18px] font-serif font-bold text-[#5B0E23] uppercase tracking-wider group-hover:text-maroon transition-colors">{item.name}</h3>
+                  <div className="h-[1px] w-8 bg-[#5B0E23]/20 mx-auto group-hover:w-16 transition-all duration-500"></div>
                 </div>
               </motion.div>
             ))}

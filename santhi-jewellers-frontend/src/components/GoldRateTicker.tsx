@@ -6,8 +6,8 @@ const GoldRateTicker: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="bg-[#111] text-gold py-2 text-center text-xs font-semibold tracking-[0.2em] uppercase">
-        Loading latest luxury rates...
+      <div className="bg-stone-50 text-stone-400 py-2 text-center text-[10px] font-semibold tracking-[0.2em] uppercase border-b border-stone-100">
+        Syncing market rates...
       </div>
     );
   }
@@ -19,19 +19,28 @@ const GoldRateTicker: React.FC = () => {
     { label: 'PLATINUM', value: rates.platinum },
   ];
 
-  // Repeat the ticker content to ensure a seamless loop
-  const content = tickerItems.map(item => `${item.label}: ₹${item.value}/g`).join('   |   ');
-  const fullContent = `${content}   |   ${content}   |   ${content}   |   ${content}`;
+  // Repeat items for seamless animation
+  const repeatedItems = [...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems];
 
   return (
-    <div className="bg-[#111] text-gold h-9 flex items-center overflow-hidden whitespace-nowrap border-b border-gold-light/10 relative z-[60] shadow-md">
+    <div className="bg-white text-stone-600 h-11 flex items-center overflow-hidden whitespace-nowrap border-b border-stone-200 relative z-[60] shadow-sm">
       <div className="animate-marquee inline-block">
-        <span className="text-[10px] lg:text-xs font-bold tracking-[0.3em] uppercase px-4 flex items-center">
-          {fullContent}
-        </span>
+        <div className="flex items-center gap-12 px-6">
+          {repeatedItems.map((item, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <span className="text-[10px] lg:text-[11px] font-bold tracking-[0.1em] text-[#5B0E23] uppercase opacity-90">
+                {item.label}
+              </span>
+              <span className="text-[11px] lg:text-[12px] font-bold tracking-tight text-[#5B0E23]">
+                Rs.{item.value}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 export default GoldRateTicker;
+

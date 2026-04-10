@@ -12,6 +12,11 @@ export default {
           DEFAULT: '#D4AF37',
           dark: '#B8860B',
         },
+        maroon: {
+          light: '#800D2D',
+          DEFAULT: '#5B0E23',
+          dark: '#3D0916',
+        },
         ivory: '#FFFFF0',
         luxury: {
           bg: '#FFFFFF',

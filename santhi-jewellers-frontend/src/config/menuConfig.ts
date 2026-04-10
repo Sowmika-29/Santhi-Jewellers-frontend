@@ -13,27 +13,76 @@ export interface MenuItem {
 
 export const MENU_DATA: MenuItem[] = [
   {
+    title: 'Home',
+    type: 'link',
+    path: '/'
+  },
+  {
     title: 'Gold',
-    type: 'dropdown',
-    items: ['Rings', 'Chains', 'Necklaces', 'Bangles', 'Earrings', 'Pendants', 'Bridal Sets', 'Customized Jewelry']
+    type: 'megamenu',
+    columns: [
+      {
+        title: 'GOLD COLLECTIONS',
+        items: [
+          'GOLD HARAM', 'GOLD NECKLACE', 'GOLD CHAIN', 'GOLD ANKLET', 
+          'GOLD RING', 'GOLD BRACELET', 'GOLD EARRINGS', 'GOLD BANGLES', 
+          'GOLD THALI CHAIN', 'GOLD MANGALYAM & URUKAL'
+        ]
+      },
+      {
+        title: 'MORE GOLD COLLECTIONS',
+        items: [
+          'Gold Kada', 'Gold Mugappu', 'Gold Pendant', 'Gold Mattal', 
+          'Gold Watch', 'Gold Idol', 'Gold Baby Vel Kappu'
+        ]
+      }
+    ]
   },
   {
     title: 'Silver',
-    type: 'dropdown',
-    items: ['Rings', 'Chains', 'Anklets', 'Bracelets', 'Earrings', 'Silver Articles']
+    type: 'megamenu',
+    columns: [
+      {
+        title: 'SILVER HARAM & NECKLACES',
+        items: ['Traditional', 'Nagas', 'Antique', 'Layer', 'Swarovski', 'Victorian', 'Necklace Sets']
+      },
+      {
+        title: 'SILVER BANGLES',
+        items: ['Nagas', 'Antique', 'Precious Stone', 'Baby Bangles', 'Swarovski Bangles', 'Other Bangle Collections']
+      },
+      {
+        title: 'SILVER EARRINGS',
+        items: ['Nagas', 'Antique', 'Swarovski', 'Kundan Stud', 'Fancy', 'Traditional']
+      },
+      {
+        title: 'SILVER ANKLETS',
+        items: ['Traditional', 'Antique', 'Fancy', 'Rose Gold', 'Baby Anklets']
+      },
+      {
+        title: 'SILVER MUGAPPU CHAIN',
+        items: []
+      }
+    ]
   },
   {
-    title: 'Platinum',
+    title: 'Diamonds',
     type: 'dropdown',
-    items: ['Rings', 'Couple Rings', 'Chains', 'Bracelets', 'Pendants']
+    items: [
+      'Diamond Chain', 'Diamond Rings', 'Diamond Kada', 'Diamond Earrings', 
+      'Diamond Necklace', 'Diamond Pendants', 'Diamond Mugappu'
+    ]
   },
   {
-    title: 'Diamond',
+    title: 'Signature Collection',
     type: 'dropdown',
-    items: ['Rings', 'Necklaces', 'Earrings', 'Bracelets', 'Pendants', 'Bridal Sets']
+    items: [
+      'Toe Rings', 'Rings', 'Kappu', 'Bracelet', 'Chains', 'Silver Malai', 
+      'Pendant', 'Silver Coin', 'Frames', 'Silver Idols', 'Silver Keychain', 
+      'Kunghuma Chimil', 'Sandhana Pela', 'Other signature Collection'
+    ]
   },
   {
-    title: 'About',
+    title: 'About us',
     type: 'link',
     path: '/about'
   }
