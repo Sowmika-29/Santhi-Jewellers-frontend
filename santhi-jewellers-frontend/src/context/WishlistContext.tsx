@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface Product {
   id: string;
@@ -10,16 +10,24 @@ interface Product {
 
 interface WishlistContextType {
   wishlist: Product[];
+  isWishlistOpen: boolean;
   addToWishlist: (product: Product) => void;
   removeFromWishlist: (productId: string) => void;
   isInWishlist: (productId: string) => boolean;
   clearWishlist: () => void;
+  openWishlist: () => void;
+  closeWishlist: () => void;
 }
 
-const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
+const WishlistContext = createContext<WishlistContextType | undefined>(
+  undefined,
+);
 
-export const WishlistProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const WishlistProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [wishlist, setWishlist] = useState<Product[]>([]);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
 
   const addToWishlist = (product: Product) => {
     setWishlist((prev) => {
@@ -38,8 +46,22 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   const clearWishlist = () => setWishlist([]);
 
+  const openWishlist = () => setIsWishlistOpen(true);
+  const closeWishlist = () => setIsWishlistOpen(false);
+
   return (
-    <WishlistContext.Provider value={{ wishlist, addToWishlist, removeFromWishlist, isInWishlist, clearWishlist }}>
+    <WishlistContext.Provider
+      value={{
+        wishlist,
+        isWishlistOpen,
+        addToWishlist,
+        removeFromWishlist,
+        isInWishlist,
+        clearWishlist,
+        openWishlist,
+        closeWishlist,
+      }}
+    >
       {children}
     </WishlistContext.Provider>
   );
@@ -48,7 +70,7 @@ export const WishlistProvider: React.FC<{ children: ReactNode }> = ({ children }
 export const useWishlist = () => {
   const context = useContext(WishlistContext);
   if (!context) {
-    throw new Error('useWishlist must be used within a WishlistProvider');
+    throw new Error("useWishlist must be used within a WishlistProvider");
   }
   return context;
 };
