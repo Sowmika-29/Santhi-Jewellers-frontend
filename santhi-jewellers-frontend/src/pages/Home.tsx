@@ -100,79 +100,81 @@ const HeroSlider = () => {
       </AnimatePresence>
 
       <div className="relative z-10 flex items-center h-full px-4 mx-auto max-w-7xl lg:px-8">
-        <div className="max-w-3xl text-white">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 30 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="text-maroon-light tracking-[0.5em] uppercase text-xs lg:text-sm font-bold mb-6 block font-serif">
-                {slides[current].subtitle}
-              </span>
-              <h1 className="text-5xl lg:text-8xl font-serif font-bold mb-8 leading-[1.1]">
-                {slides[current].title}
-              </h1>
-              <p className="max-w-lg mb-12 text-lg font-light leading-relaxed lg:text-xl opacity-90">
-                {slides[current].desc}
-              </p>
-              <div className="flex flex-col items-start gap-8 sm:flex-row">
-                <Magnetic>
-                  <Link
-                    to="/category/Gold"
-                    className="group relative px-12 py-6 bg-maroon text-white font-bold tracking-[0.25em] uppercase transition-all duration-500 flex items-center shadow-[0_20px_40px_-10px_rgba(91,14,35,0.4)] hover:shadow-[0_0_50px_rgba(212,175,55,0.3)] active:scale-95 overflow-hidden"
-                  >
-                    {/* Shine Layer */}
-                    <div className="absolute inset-0 z-0 w-full h-full -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer"></div>
-
-                    {/* Border Trace SVG */}
-                    <svg
-                      className="absolute inset-0 z-10 w-full h-full pointer-events-none"
-                      fill="none"
+        <ScrollReveal>
+          <div className="max-w-3xl text-white">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 30 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <span className="text-maroon-light tracking-[0.5em] uppercase text-xs lg:text-sm font-bold mb-6 block font-serif">
+                  {slides[current].subtitle}
+                </span>
+                <h1 className="text-5xl lg:text-8xl font-serif font-bold mb-8 leading-[1.1]">
+                  {slides[current].title}
+                </h1>
+                <p className="max-w-lg mb-12 text-lg font-light leading-relaxed lg:text-xl opacity-90">
+                  {slides[current].desc}
+                </p>
+                <div className="flex flex-col items-start gap-8 sm:flex-row">
+                  <Magnetic>
+                    <Link
+                      to="/category/Gold"
+                      className="group relative px-12 py-6 bg-maroon text-white font-bold tracking-[0.25em] uppercase transition-all duration-500 flex items-center shadow-[0_20px_40px_-10px_rgba(91,14,35,0.4)] hover:shadow-[0_0_50px_rgba(212,175,55,0.3)] active:scale-95 overflow-hidden"
                     >
-                      <rect
-                        x="2"
-                        y="2"
-                        width="calc(100% - 4px)"
-                        height="calc(100% - 4px)"
-                        className="stroke-[#D4AF37] stroke-[2px] [stroke-dasharray:400,0] group-hover:[stroke-dasharray:0,400] transition-all duration-1000"
-                        strokeLinecap="square"
-                      />
-                    </svg>
+                      {/* Shine Layer */}
+                      <div className="absolute inset-0 z-0 w-full h-full -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer"></div>
 
-                    <span className="relative z-20 flex items-center">
-                      Browse Gold{" "}
-                      <ChevronRight
-                        size={22}
-                        className="ml-3 transition-transform duration-500 group-hover:translate-x-2"
-                      />
-                    </span>
-                  </Link>
-                </Magnetic>
+                      {/* Border Trace SVG */}
+                      <svg
+                        className="absolute inset-0 z-10 w-full h-full pointer-events-none"
+                        fill="none"
+                      >
+                        <rect
+                          x="2"
+                          y="2"
+                          width="calc(100% - 4px)"
+                          height="calc(100% - 4px)"
+                          className="stroke-[#D4AF37] stroke-[2px] [stroke-dasharray:400,0] group-hover:[stroke-dasharray:0,400] transition-all duration-1000"
+                          strokeLinecap="square"
+                        />
+                      </svg>
 
-                <Magnetic>
-                  <Link
-                    to="/gold/customized"
-                    className="group relative px-12 py-6 border-2 border-white/20 hover:border-[#D4AF37] text-white font-bold tracking-[0.25em] uppercase transition-all duration-500 backdrop-blur-sm active:scale-95 flex items-center bg-white/5 overflow-hidden"
-                  >
-                    {/* Liquid Fill */}
-                    <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-[#D4AF37] to-[#B8860B] translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0 ease-[cubic-bezier(0.19,1,0.22,1)]"></div>
+                      <span className="relative z-20 flex items-center">
+                        Browse Gold{" "}
+                        <ChevronRight
+                          size={22}
+                          className="ml-3 transition-transform duration-500 group-hover:translate-x-2"
+                        />
+                      </span>
+                    </Link>
+                  </Magnetic>
 
-                    <span className="relative z-20 flex items-center transition-colors duration-500 group-hover:text-black">
-                      Customization Order{" "}
-                      <ArrowRight
-                        size={20}
-                        className="ml-3 transition-all duration-700 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
-                      />
-                    </span>
-                  </Link>
-                </Magnetic>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+                  <Magnetic>
+                    <Link
+                      to="/gold/customized"
+                      className="group relative px-12 py-6 border-2 border-white/20 hover:border-[#D4AF37] text-white font-bold tracking-[0.25em] uppercase transition-all duration-500 backdrop-blur-sm active:scale-95 flex items-center bg-white/5 overflow-hidden"
+                    >
+                      {/* Liquid Fill */}
+                      <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-[#D4AF37] to-[#B8860B] translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0 ease-[cubic-bezier(0.19,1,0.22,1)]"></div>
+
+                      <span className="relative z-20 flex items-center transition-colors duration-500 group-hover:text-black">
+                        Customization Order{" "}
+                        <ArrowRight
+                          size={20}
+                          className="ml-3 transition-all duration-700 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
+                        />
+                      </span>
+                    </Link>
+                  </Magnetic>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </ScrollReveal>
       </div>
 
       {/* Slider Controls */}
@@ -211,9 +213,9 @@ const ScrollReveal: React.FC<{
   className?: string;
 }> = ({ children, delay = 0, className = "" }) => (
   <motion.div
-    initial={{ opacity: 0, y: 50 }}
+    initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
+    viewport={{ once: false, amount: 0.3 }}
     transition={{ duration: 0.8, ease: "easeOut", delay }}
     className={className}
   >
