@@ -393,40 +393,82 @@ const SubCategoryPage = () => {
                     setOpenSections((prev) => ({ ...prev, price: !prev.price }))
                   }
                 >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between text-[30px] text-stone-800">
-                      <span>{formatCurrency(priceRange[0])}</span>
-                      <span>{formatCurrency(priceRange[1])}</span>
+                  <div className="space-y-8">
+                    {/* Range Summary */}
+                    <div className="flex items-center justify-between text-xs font-semibold tracking-wider text-stone-500 uppercase">
+                      <span>Range</span>
+                      <span className="text-stone-900 font-sans tracking-normal">
+                        {formatCurrency(priceRange[0])} — {formatCurrency(priceRange[1])}
+                      </span>
                     </div>
-                    <div className="relative pt-2">
+
+                    {/* Custom Dual Range Slider */}
+                    <div className="relative h-10 flex items-center group">
+                      {/* Track background */}
+                      <div className="absolute h-1 w-full bg-stone-200 rounded-full" />
+                      
+                      {/* Active track highlight */}
+                      <div 
+                        className="absolute h-1 bg-[#5B0E23] rounded-full z-10"
+                        style={{
+                          left: `${((priceRange[0] - minPrice) / (maxPrice - minPrice)) * 100}%`,
+                          width: `${((priceRange[1] - priceRange[0]) / (maxPrice - minPrice)) * 100}%`
+                        }}
+                      />
+
+                      {/* Native Range Inputs overlayed */}
                       <input
                         type="range"
                         min={minPrice}
                         max={maxPrice}
+                        step={100}
                         value={priceRange[0]}
-                        onChange={(event) => {
-                          const nextMin = Number(event.target.value);
-                          setPriceRange((prev) => [
-                            Math.min(nextMin, prev[1]),
-                            prev[1],
-                          ]);
+                        onChange={(e) => {
+                          const val = Math.min(Number(e.target.value), priceRange[1] - 100);
+                          setPriceRange([val, priceRange[1]]);
                         }}
-                        className="w-full accent-black"
+                        className="absolute w-full appearance-none bg-transparent pointer-events-none z-20 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#5B0E23] [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg"
                       />
                       <input
                         type="range"
                         min={minPrice}
                         max={maxPrice}
+                        step={100}
                         value={priceRange[1]}
-                        onChange={(event) => {
-                          const nextMax = Number(event.target.value);
-                          setPriceRange((prev) => [
-                            prev[0],
-                            Math.max(nextMax, prev[0]),
-                          ]);
+                        onChange={(e) => {
+                          const val = Math.max(Number(e.target.value), priceRange[0] + 100);
+                          setPriceRange([priceRange[0], val]);
                         }}
-                        className="w-full accent-black"
+                        className="absolute w-full appearance-none bg-transparent pointer-events-none z-20 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-[#5B0E23] [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg"
                       />
+                    </div>
+
+                    {/* Manual Inputs for precision */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] uppercase font-bold text-stone-400 tracking-widest pl-1">Min (₹)</label>
+                        <input
+                          type="number"
+                          value={priceRange[0]}
+                          onChange={(e) => {
+                            const val = Math.min(Math.max(Number(e.target.value), minPrice), priceRange[1] - 1);
+                            setPriceRange([val, priceRange[1]]);
+                          }}
+                          className="w-full h-11 border border-stone-200 bg-[#fafaf9] rounded-md px-4 text-sm font-sans focus:ring-1 focus:ring-[#5B0E23] focus:border-[#5B0E23] outline-none transition-all"
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] uppercase font-bold text-stone-400 tracking-widest pl-1">Max (₹)</label>
+                        <input
+                          type="number"
+                          value={priceRange[1]}
+                          onChange={(e) => {
+                            const val = Math.max(Math.min(Number(e.target.value), maxPrice), priceRange[0] + 1);
+                            setPriceRange([priceRange[0], val]);
+                          }}
+                          className="w-full h-11 border border-stone-200 bg-[#fafaf9] rounded-md px-4 text-sm font-sans focus:ring-1 focus:ring-[#5B0E23] focus:border-[#5B0E23] outline-none transition-all"
+                        />
+                      </div>
                     </div>
                   </div>
                 </FilterSection>
